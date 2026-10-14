@@ -39,10 +39,6 @@ on:
         type: string
         default: ''
 
-permissions:
-  contents: read
-  actions: read
-
 jobs:
   scan:
     uses: apisec-inc/poc-apisec-orchestrator/.github/workflows/scan.yml@v1

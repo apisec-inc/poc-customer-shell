@@ -24,12 +24,12 @@ on:
         default: false
       max_repos:
         description: 'Cap repos per run (0 = no cap)'
-        type: number
-        default: 0
+        type: string
+        default: '0'
       throughput:
         description: 'Max parallel scans (0 = org variable, else 2)'
-        type: number
-        default: 0
+        type: string
+        default: '0'
       runner:
         description: 'github-hosted | self-hosted (blank = org variable, else github-hosted)'
         type: string
@@ -39,14 +39,18 @@ on:
         type: string
         default: ''
 
+permissions:
+  contents: read
+  actions: read
+
 jobs:
   scan:
     uses: apisec-inc/poc-apisec-orchestrator/.github/workflows/scan.yml@v1
     with:
-      dry_run: ${{ inputs.dry_run }}
-      force_full_scan: ${{ inputs.force_full_scan }}
-      max_repos: ${{ inputs.max_repos }}
-      throughput: ${{ inputs.throughput }}
-      runner: ${{ inputs.runner }}
-      run_profile: ${{ inputs.run_profile }}
+      dry_run:         ${{ inputs.dry_run || false }}
+      force_full_scan: ${{ inputs.force_full_scan || false }}
+      max_repos:       ${{ inputs.max_repos || '0' }}
+      throughput:      ${{ inputs.throughput || '0' }}
+      runner:          ${{ inputs.runner || '' }}
+      run_profile:     ${{ inputs.run_profile || '' }}
     secrets: inherit

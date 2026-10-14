@@ -1,0 +1,10 @@
+name: probe
+on:
+  workflow_dispatch: {}
+jobs:
+  scan:
+    uses: apisec-inc/poc-apisec-orchestrator/.github/workflows/scan.yml@main
+    with:
+      dry_run: true
+      max_repos: 1
+    secrets: inherit

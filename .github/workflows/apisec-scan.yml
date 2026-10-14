@@ -31,14 +31,12 @@ on:
         type: number
         default: 0
       runner:
-        description: 'Runner pool for this run'
-        type: choice
-        options: ['', 'github-hosted', 'self-hosted']
+        description: 'github-hosted | self-hosted (blank = org variable, else github-hosted)'
+        type: string
         default: ''
       run_profile:
         description: 'surface | legacy (blank = org variable, else surface)'
-        type: choice
-        options: ['', 'surface', 'legacy']
+        type: string
         default: ''
 
 permissions:
